@@ -10,9 +10,14 @@ const express = require("express");
 const app = express();
 //console.log(app);
 
+const morgan = require('morgan');
+//console.log(morgan);
+
 
 
 // route générale 
+app.use(morgan("dev"));
+
 app.use((req,res,next) =>{
   console.log("yo");
   next();
@@ -24,6 +29,7 @@ app.use((req,res,next) =>{
 });
 
 app.use((req,res) =>{
+  res.status(201);
   res.json({"mon message" : "bonne réception du paquet"});
 });
 
@@ -46,6 +52,11 @@ app.use((req,res,next) =>{
 
 app.use((req,res,next) =>{
   console.log("yo2");
+  next();
+});
+
+app.use((req,res,next) =>{
+  res.status(201);
   next();
 });
 
