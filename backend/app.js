@@ -7,31 +7,49 @@ console.log(` tests.app `);
 const express = require("express");
 //console.log(express);
 
-const app = express();
-//console.log(app);
-
 const morgan = require('morgan');
 //console.log(morgan);
 
+const mongoose = require('./db/db');
+//console.log(mongoose);
+
+//const bodyParser = require('body-parser');
+//console.log(bodyParser);
+
+const userRoute = require('./routes/user');
+//console.log(userRoute);
 
 
-// route générale 
+//creer appli express?
+const app = express();
+//console.log(app);
+
+
+// -----------route générale : ---------------//
+
+//MORGAN (module qui log req et res)
 app.use(morgan("dev"));
 
-app.use((req,res,next) =>{
-  console.log("yo");
+
+//CORS
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   next();
 });
 
-app.use((req,res,next) =>{
-  console.log("yo2");
-  next();
-});
 
-app.use((req,res) =>{
-  res.status(201);
-  res.json({"mon message" : "bonne réception du paquet"});
-});
+//bodyParser (transfo body json en objet?)
+//app.use(bodyParser.json());
+app.use(express.json());
+//console.log(bodyParser);
+
+
+//authentification
+app.use('/api/auth',userRoute );
+
+
 
 
 //export
@@ -45,22 +63,22 @@ module.exports = app;
 
 /*
 // route générale 
+app.use(morgan("dev"));
+
 app.use((req,res,next) =>{
   console.log("yo");
   next();
 });
 
 app.use((req,res,next) =>{
+  //console.log("afficher req :");
+  //console.log(req);
   console.log("yo2");
   next();
 });
 
-app.use((req,res,next) =>{
-  res.status(201);
-  next();
-});
-
 app.use((req,res) =>{
+  res.status(201);
   res.json({"mon message" : "bonne réception du paquet"});
 });
 */

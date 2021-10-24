@@ -10,6 +10,7 @@ const app = require("./app.js");
 //console.log(app);
 const dotenv = require("dotenv");
 //console.log(dotenv);
+//const result = dotenv.config();
 
 
 
