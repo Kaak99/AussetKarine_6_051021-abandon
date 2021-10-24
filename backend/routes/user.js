@@ -3,14 +3,14 @@
 const express = require("express");
 //console.log(express);
 
-const router = express.Router();
-//console.log(router);
+
 
 const userController = require('../controllers/user');
 //console.log(userController);
 
 
-
+const router = express.Router();
+//console.log(router);
 
 
 //route signup

@@ -16,8 +16,8 @@ const mongoose = require('./db/db');
 //const bodyParser = require('body-parser');
 //console.log(bodyParser);
 
-const userRoute = require('./routes/user');
-//console.log(userRoute);
+const userRoutes = require('./routes/user');
+//console.log(userRoutes);
 
 
 //creer appli express?
@@ -47,7 +47,7 @@ app.use(express.json());
 
 
 //authentification
-app.use('/api/auth',userRoute );
+app.use('/api/auth',userRoutes );
 
 
 
