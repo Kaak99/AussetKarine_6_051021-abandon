@@ -13,5 +13,5 @@ const userSchema = mongoose.Schema({
 
 
 
-//export
+//exportS (erreur sans le S à odule.exports ! "TypeError: User is not a constructor")
 module.exports = mongoose.model("user", userSchema);
