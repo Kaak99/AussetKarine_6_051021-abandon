@@ -2,6 +2,11 @@
 const cryptojs = require("crypto-js");
 const bcrypt = require("bcrypt");
 
+//import variables d'environnement 
+const dotenv = require("dotenv");
+const result = dotenv.config();
+
+
 //import le modele
 const User = require("../models/User");
 //console.log(User);
@@ -14,7 +19,8 @@ exports.signup = (req, res, next) => {
   // console.log(req.body.password);
 
   //chiffrage email
-const emailCryptoJs = cryptojs.HmacSHA256(req.body.email, "clépassecretecardanslecode").toString();
+const emailCryptoJs = cryptojs.HmacSHA256(req.body.email, `${process.env.CRYPTOJS_EMAIL}`).toString();
+//console.log(process.env.CRYPTOJS_EMAIL);
 
   //hashage mdp
   bcrypt.hash(req.body.password, 10)
