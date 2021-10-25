@@ -17,7 +17,7 @@ const router = express.Router();
 router.post('/signup', userController.signup);
 
 //route login
-//router.post('/login', userController.login);
+router.post('/login', userController.login);
 
 
 //export
