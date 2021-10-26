@@ -18,7 +18,7 @@ const mongoose = require('./db/db');
 
 const userRoutes = require('./routes/user');
 //console.log(userRoutes);
-
+const sauceRoutes = require('./routes/sauce');
 
 //creer appli express?
 const app = express();
@@ -49,8 +49,8 @@ app.use(express.json());
 //authentification
 app.use('/api/auth',userRoutes );
 
-
-
+//sauces?
+app.use('/api/sauces',sauceRoutes );
 
 //export
 module.exports = app;

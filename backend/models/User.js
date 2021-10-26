@@ -1,11 +1,11 @@
-//on crée nos schémas de données 
+//on crée nos schémas de données pour les utilisateurs
 
 
-//import
+//-----imports-----//
 const mongoose = require("mongoose");
 const uniqueValidator = require('mongoose-unique-validator');
 
-//schémas pour les utilisateurs 
+//------schémas pour les utilisateurs-----//
 const userSchema = mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password : {type: String, required: true}
@@ -13,5 +13,6 @@ const userSchema = mongoose.Schema({
 
 userSchema.plugin(uniqueValidator);
 
-//exportS (erreur sans le S à odule.exports ! "TypeError: User is not a constructor")
+//-----exports-----//
+//attention erreur sans le S à module.exportS ! "TypeError: User is not a constructor")
 module.exports = mongoose.model("user", userSchema);

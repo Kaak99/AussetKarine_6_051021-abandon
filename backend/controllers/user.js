@@ -1,17 +1,24 @@
-//import CryptoJS (chiffrage pour emails) et bscript (hash mdp)
+//-----imports-----//
+
+//-import CryptoJS (chiffrage pour emails) et bscript (hash mdp)-//
 const cryptojs = require("crypto-js");
 const bcrypt = require("bcrypt");
 
 const jwt = require('jsonwebtoken');
 
-//import variables d'environnement 
+//import variables d'environnement //
 const dotenv = require("dotenv");
 const result = dotenv.config();
 
 
-//import le modele
+//import le modele//
 const User = require("../models/User");
 //console.log(User);
+
+
+
+//-----exports-----//
+
 
 //1.signup : on va enregistrer l'utilisateur dans la bdd
 exports.signup = (req, res, next) => {
@@ -73,7 +80,7 @@ exports.login = (req,res,next) =>{
       //il faut renvoyer au front un userid+1token:
       res.status(200).json({
         userId: userFound._id,
-        token: jwt.sign({userId: userFound._id},`${process.env.JWT_KEY_TOKEN}`,{expiresIn:"12"})
+        token: jwt.sign({userId: userFound._id},`${process.env.JWT_KEY_TOKEN}`,{expiresIn:"12h"})
       });
     })
     .catch(error => res.status(500).json({error:'error1'}));//error lors comparaison mdp
