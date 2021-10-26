@@ -9,12 +9,17 @@ const User = require("../models/Sauce");
 
 //-----exports-----//
 
-/*
+
 //1.getAllSauces : afficher toutes les sauces
 exports.getAllSauces = (req,res,next) =>{
   console.log("from getAllSauces");
-}
-*/
+  
+  Sauce.find()
+    .then(sauce => res.status(200).json(sauce))
+    .catch(error => res.status(400).json({ error }));
+};
+
+
 
 /*
 //2.getOneSauce : afficher une seule sauce
@@ -32,7 +37,7 @@ exports.createSauce = (req,res,next) =>{
   const sauce = new Sauce({
     ...req.body
   });
-  
+
   console.log(sauce);
 
   sauce.save()

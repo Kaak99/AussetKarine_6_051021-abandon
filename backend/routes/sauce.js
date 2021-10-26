@@ -12,10 +12,10 @@ const router = express.Router();
 //-----routes-----//
 
 //route affichage de toutes les sauces//
-//router.get('/', userController.getAllSauces);
+router.get('/', sauceController.getAllSauces);
 
 //route affichage d'une sauce// 
-//router.get('/:id', userController.sauce);
+//router.get('/:id', sauceController.getOneSauce);
 
 //--route création d'une sauce--// 
 router.post('/', sauceController.createSauce);
