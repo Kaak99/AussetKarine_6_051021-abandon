@@ -1,5 +1,6 @@
 //-----imports-----//
 //import le modele
+const Sauce = require("../models/Sauce");
 const User = require("../models/Sauce");
 //console.log(User);
 
@@ -26,8 +27,24 @@ exports.getOneSauce = (req,res,next) =>{
 exports.createSauce = (req,res,next) =>{
   console.log("from createSauce");
   console.log("!!!req.body!!!!");
-  res.status(222).json({message : "special222"})
+
+
+  const sauce = new Sauce({
+    ...req.body
+  });
+  
+  console.log(sauce);
+
+  sauce.save()
+    .then(() =>
+      res.status(201).json({ message: "Sauce créée et sauvegardée" })
+    )
+    //.catch((error) => res.status(500).json({error}.send(console.log(error))))
+    .catch((error) => res.status(400).json({ error }));
 }
+
+
+
 
 /*
 //4.modifySauce : modifier une sauce

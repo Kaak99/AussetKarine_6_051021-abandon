@@ -80,7 +80,7 @@ exports.login = (req,res,next) =>{
       //il faut renvoyer au front un userid+1token:
       res.status(200).json({
         userId: userFound._id,
-        token: jwt.sign({userId: userFound._id},`${process.env.JWT_KEY_TOKEN}`,{expiresIn:"12h"})
+        token: jwt.sign ( {userId: userFound._id} , `${process.env.JWT_KEY_TOKEN}` , {expiresIn:"12h"} )
       });
     })
     .catch(error => res.status(500).json({error:'error1'}));//error lors comparaison mdp
