@@ -8,3 +8,4 @@ Pour lancer le serveur :
 Pour lancer le frontend :
 - se mettre dans le dossier frontend
 - npn run start (ou npm start)
+Alternative : https://michelre.github.io/dwj-p6/
