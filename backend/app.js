@@ -16,6 +16,8 @@ const mongoose = require('./db/db');
 //const bodyParser = require('body-parser');
 //console.log(bodyParser);
 
+const path = require('path');
+
 const userRoutes = require('./routes/user');
 //console.log(userRoutes);
 const sauceRoutes = require('./routes/sauce');
@@ -44,6 +46,10 @@ app.use((req, res, next) => {
 //app.use(bodyParser.json());
 app.use(express.json());
 //console.log(bodyParser);
+
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
 
 
 //authentification

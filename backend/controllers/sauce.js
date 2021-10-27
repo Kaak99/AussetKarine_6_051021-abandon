@@ -1,7 +1,14 @@
 //-----imports-----//
 //import le modele
+//-import CryptoJS (chiffrage pour emails) et bscript (hash mdp)-//
+
+
+
+
+//import variables d'environnement //
+//const dotenv = require("dotenv").config();
 const Sauce = require("../models/Sauce");
-const User = require("../models/Sauce");
+
 //console.log(User);
 
 
@@ -34,13 +41,14 @@ exports.getOneSauce = (req,res,next) =>{
 exports.createSauce = (req,res,next) =>{
   console.log("from createSauce");
   console.log("!!!req.body!!!!");
-
+  const sauceObject = JSON.parse(req.body.sauce);
 
   const sauce = new Sauce({
-    ...req.body
+    ...sauceObject,
+    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
   });
 
-  console.log(sauce);
+  //console.log(sauce);
 
   sauce.save()
     .then(() =>
@@ -57,7 +65,12 @@ exports.createSauce = (req,res,next) =>{
 //4.modifySauce : modifier une sauce
 exports.modifySauce = (req,res,next) =>{
   console.log("from modifySauce");
-  Sauce.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
+  const sauceObject = req.file ? 
+  {...JSON.parse(req.body.sauce),
+    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+  } : { ...req.body };
+
+  Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
   .then(() => res.status(200).json({ message: 'Objet modifié !'}))
   .catch(error => res.status(400).json({ error }));
 }

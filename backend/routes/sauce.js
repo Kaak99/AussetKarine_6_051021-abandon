@@ -8,6 +8,8 @@ const router = express.Router();
 
 const auth = require('../middleware/auth');
 
+const multer = require('../middleware/multer-config');
+
 const sauceController = require('../controllers/sauce');
 
 
@@ -22,13 +24,13 @@ router.get('/', auth, sauceController.getAllSauces);
 router.get('/:id', auth, sauceController.getOneSauce);
 
 //--route création d'une sauce--// 
-router.post('/', auth, sauceController.createSauce);
+router.post('/', auth, multer, sauceController.createSauce);
 
 //route suppression d'une sauce//
 router.delete('/:id', auth, sauceController.deleteSauce);
 
 //route modification d'une sauce// 
-router.put('/:id',  auth, sauceController.modifySauce);
+router.put('/:id', auth, multer, sauceController.modifySauce);
 
 //route like d'une sauce// 
 //route dislike d'une sauce//

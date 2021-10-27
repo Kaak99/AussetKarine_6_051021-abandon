@@ -3,7 +3,7 @@
 
 //-----imports-----//
 const mongoose = require("mongoose");
-const uniqueValidator = require('mongoose-unique-validator');
+//const uniqueValidator = require('mongoose-unique-validator');
 
 //------schémas pour les sauces-----//
 const sauceSchema = mongoose.Schema({
@@ -13,14 +13,14 @@ const sauceSchema = mongoose.Schema({
   description : {type: String, required: true},
   mainPepper : {type: String, required: true},
   imageUrl : {type: String, required: true},
-  heat : {type: Number, required: true},
-  likes : {type: Number, required: true},
-  dislikes : {type: Number, required: true},
-  usersLiked : {type: Array, required: true},
-  usersDisliked : {type: Array, required: true}
+  heat : {type: Number, required: true, min: 1, max: 10},
+  likes : {type: Number, required: true, default: 0},
+  dislikes : {type: Number, required: true, default: 0},
+  usersLiked : {type: Array, required: true, default: []},
+  usersDisliked : {type: Array, required: true, default: []}
 });
 
-sauceSchema.plugin(uniqueValidator);
+//sauceSchema.plugin(uniqueValidator);
 
 //-----exports-----//
 //attention erreur sans le S à module.exportS ! "TypeError: User is not a constructor")
