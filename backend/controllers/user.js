@@ -27,14 +27,15 @@ exports.signup = (req, res, next) => {
   // console.log(req.body.password);
 
   //chiffrage email
-const emailCryptoJs = cryptojs.HmacSHA256(req.body.email, `${process.env.CRYPTOJS_EMAIL}`).toString();
-//console.log(process.env.CRYPTOJS_EMAIL);
+  //const emailCryptoJs = cryptojs.HmacSHA256(req.body.email, `${process.env.CRYPTOJS_EMAIL}`).toString();//si chiffrage mail!
+  //console.log(process.env.CRYPTOJS_EMAIL);
 
   //hashage mdp
   bcrypt.hash(req.body.password, 10)
     .then((hash) => {
       const user = new User({
-        email: emailCryptoJs,
+        //email: emailCryptoJs,//si chiffrage mail!
+        email: req.body.email,//
         password: hash,
       });
       console.log(user);
@@ -59,11 +60,13 @@ exports.login = (req,res,next) =>{
   console.log(req.body.password);
 
     //chiffrage email
-  const emailCryptoJs = cryptojs.HmacSHA256(req.body.email, `${process.env.CRYPTOJS_EMAIL}`).toString();
-  console.log(emailCryptoJs);
+  //const emailCryptoJs = cryptojs.HmacSHA256(req.body.email, `${process.env.CRYPTOJS_EMAIL}`).toString();//si chiffrage mail!
+  //console.log(emailCryptoJs);
+  
 
   //chercher si email existe dans bdd
-  User.findOne({email:emailCryptoJs})
+  //User.findOne({email:emailCryptoJs})//si chiffrage mail!
+  User.findOne({email: req.body.email})
   .then(userFound => {
     console.log(userFound);
     if (!userFound){

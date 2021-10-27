@@ -21,7 +21,10 @@ router.get('/:id', sauceController.getOneSauce);
 router.post('/', sauceController.createSauce);
 
 //route suppression d'une sauce//
+//router.delete('/:id', sauceController.deleteSauce);
+
 //route modification d'une sauce// 
+//router.put('/:id', sauceController.modifySauce);
 
 //route like d'une sauce// 
 //route dislike d'une sauce//

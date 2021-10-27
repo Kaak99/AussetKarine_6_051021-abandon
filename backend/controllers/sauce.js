@@ -56,8 +56,10 @@ exports.createSauce = (req,res,next) =>{
 /*
 //4.modifySauce : modifier une sauce
 exports.modifySauce = (req,res,next) =>{
-  console.log("from getAllSauces");
-
+  console.log("from modifySauce");
+  Sauce.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
+  .then(() => res.status(200).json({ message: 'Objet modifié !'}))
+  .catch(error => res.status(400).json({ error }));
 }
 */
 
@@ -65,6 +67,9 @@ exports.modifySauce = (req,res,next) =>{
 //5.deleteSauce : supprimer une sauce
 exports.deleteSauce = (req,res,next) =>{
   console.log("from getAllSauces");
+    Sauce.deleteOne({ _id: req.params.id })
+    .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
+    .catch(error => res.status(400).json({ error }));
 }
 */
 
