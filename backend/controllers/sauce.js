@@ -53,7 +53,7 @@ exports.createSauce = (req,res,next) =>{
 
 
 
-/*
+
 //4.modifySauce : modifier une sauce
 exports.modifySauce = (req,res,next) =>{
   console.log("from modifySauce");
@@ -61,9 +61,9 @@ exports.modifySauce = (req,res,next) =>{
   .then(() => res.status(200).json({ message: 'Objet modifié !'}))
   .catch(error => res.status(400).json({ error }));
 }
-*/
 
-/*
+
+
 //5.deleteSauce : supprimer une sauce
 exports.deleteSauce = (req,res,next) =>{
   console.log("from getAllSauces");
@@ -71,7 +71,7 @@ exports.deleteSauce = (req,res,next) =>{
     .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
     .catch(error => res.status(400).json({ error }));
 }
-*/
+
 
 /*
 //6.likeDislikeSauce : supprimer une sauce
