@@ -21,12 +21,14 @@ exports.getAllSauces = (req,res,next) =>{
 
 
 
-/*
 //2.getOneSauce : afficher une seule sauce
 exports.getOneSauce = (req,res,next) =>{
-  console.log("from getAllSauces");
+  console.log("from getOneSauce");
+  Sauce.findOne({ _id: req.params.id })
+  .then(sauce => res.status(200).json(sauce))
+  .catch(error => res.status(404).json({ error }));
 }
-*/
+
 
 //3.createSauce : créer une sauce
 exports.createSauce = (req,res,next) =>{

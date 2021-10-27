@@ -15,7 +15,7 @@ const router = express.Router();
 router.get('/', sauceController.getAllSauces);
 
 //route affichage d'une sauce// 
-//router.get('/:id', sauceController.getOneSauce);
+router.get('/:id', sauceController.getOneSauce);
 
 //--route création d'une sauce--// 
 router.post('/', sauceController.createSauce);
