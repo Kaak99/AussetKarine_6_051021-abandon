@@ -40,13 +40,14 @@ exports.getOneSauce = (req,res,next) =>{
 //3.createSauce : créer une sauce
 exports.createSauce = (req,res,next) =>{
   console.log("from createSauce");
-  console.log("!!!req.body!!!!");
+  console.log(req.body);
   const sauceObject = JSON.parse(req.body.sauce);
-
+  console.log(sauceObject);
   const sauce = new Sauce({
     ...sauceObject,
     imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
   });
+  console.log(sauce);
 
   //console.log(sauce);
 
@@ -55,7 +56,7 @@ exports.createSauce = (req,res,next) =>{
       res.status(201).json({ message: "Sauce créée et sauvegardée" })
     )
     //.catch((error) => res.status(500).json({error}.send(console.log(error))))
-    .catch((error) => res.status(400).json({ error }));
+    .catch((error) => res.status(406).json({ error }));//400
 }
 
 

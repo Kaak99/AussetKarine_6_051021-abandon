@@ -20,7 +20,7 @@ const User = require("../models/User");
 //-----exports-----//
 
 
-//1.signup : on va enregistrer l'utilisateur dans la bdd
+// 1.signup : on va enregistrer l'utilisateur dans la bdd //
 exports.signup = (req, res, next) => {
   // console.log("!!!req.body!!!!");
   // console.log(req.body.email);
@@ -52,14 +52,14 @@ exports.signup = (req, res, next) => {
 };
 
 
-//2.login : 
+// 2.login : //
 exports.login = (req,res,next) =>{
 
   console.log("!!!req.body!!!!");
-  console.log(req.body.email);
-  console.log(req.body.password);
+  //console.log(req.body.email);
+  //console.log(req.body.password);
 
-    //chiffrage email
+    //chiffrage email//
   //const emailCryptoJs = cryptojs.HmacSHA256(req.body.email, `${process.env.CRYPTOJS_EMAIL}`).toString();//si chiffrage mail!
   //console.log(emailCryptoJs);
   
@@ -68,7 +68,7 @@ exports.login = (req,res,next) =>{
   //User.findOne({email:emailCryptoJs})//si chiffrage mail!
   User.findOne({email: req.body.email})
   .then(userFound => {
-    console.log(userFound);
+    //console.log(userFound);
     if (!userFound){
       return res.status(401).json({error: "Utilisateur inconnu"});//fin
     }
@@ -89,7 +89,4 @@ exports.login = (req,res,next) =>{
     .catch(error => res.status(500).json({error:'error1'}));//error lors comparaison mdp
   })
   .catch(error => res.status(500).json({error:'error2'}));//error dans le reste du code
-
-
-
 };
