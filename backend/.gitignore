@@ -1,4 +1,0 @@
-./images/*.jpg
-./images/*.png
-node_modules
-.env
