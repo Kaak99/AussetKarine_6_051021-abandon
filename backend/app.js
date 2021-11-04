@@ -1,28 +1,21 @@
 // tests (à retirer)
-console.log(` --------> tests.app`);
-console.log(` tests.app `);
+console.log(` --------> app.js`);
 
 // packages import
 
 const express = require("express");
-//console.log(express);
 
-const morgan = require('morgan');
-//console.log(morgan);
+const path = require('path');//pour acces au chemin des fichiers
 
-const mongoose = require('./db/db');
-//console.log(mongoose);
+const morgan = require('morgan');//log requetes
 
-//const bodyParser = require('body-parser');
-//console.log(bodyParser);
+const userRoutes = require('./routes/user');//routes user
+const sauceRoutes = require('./routes/sauce');//routes sauce
 
-const userRoutes = require('./routes/user');
-//console.log(userRoutes);
-const sauceRoutes = require('./routes/sauce');
+const mongoose = require('./db/db');//bdd
 
-//creer appli express?
-const app = express();
-//console.log(app);
+
+const app = express();//express//
 
 
 // -----------route générale : ---------------//
@@ -40,20 +33,20 @@ app.use((req, res, next) => {
 });
 
 
-//bodyParser (transfo body json en objet?)
-//app.use(bodyParser.json());
-app.use(express.json());
-//console.log(bodyParser);
+app.use(express.json());//bodyparser
 
+app.use('/images' , express.static(path.join(__dirname, 'images')));//appel pour multer(chemin images)
 
-//authentification
-app.use('/api/auth',userRoutes );
-
-//sauces?
 app.use('/api/sauces',sauceRoutes );
+app.use('/api/auth',userRoutes );
 
 //export
 module.exports = app;
+
+
+
+
+
 
 
 
