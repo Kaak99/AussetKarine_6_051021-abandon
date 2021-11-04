@@ -1,6 +1,9 @@
 //mongodb+srv://master:<password>@cluster0.vd2gi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 //mongodb+srv://master:master-mdp@cluster0.vd2gi.mongodb.net/maBdd?retryWrites=true&w=majority
 
+// tests (à retirer)
+console.log(` --------> user-db`);
+
 //import variables d'environnement 
 const dotenv = require("dotenv").config();
 

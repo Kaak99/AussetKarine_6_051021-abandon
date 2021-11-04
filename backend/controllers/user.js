@@ -1,19 +1,20 @@
+// tests (à retirer)
+console.log(` --------> user-ctrl`);
+
 //-----imports-----//
-
-//-import CryptoJS (chiffrage pour emails) et bscript (hash mdp)-//
-const cryptojs = require("crypto-js");
-const bcrypt = require("bcrypt");
-
-const jwt = require('jsonwebtoken');
-
-//import variables d'environnement //
-const dotenv = require("dotenv");
-const result = dotenv.config();
-
 
 //import le modele//
 const User = require("../models/User");
-//console.log(User);
+
+//- import CryptoJS/ bscript/ JWT -//
+const cryptojs = require("crypto-js");//(chiffrage pour emails)
+const bcrypt = require("bcrypt");//(hash mdp)
+const jwt = require('jsonwebtoken');//token
+
+//import variables d'environnement //
+const dotenv = require("dotenv").config();
+/*const dotenv = require("dotenv");
+const result = dotenv.config();*/
 
 
 
@@ -38,15 +39,12 @@ exports.signup = (req, res, next) => {
         email: req.body.email,//
         password: hash,
       });
-      console.log(user);
-
-      user
-        .save()
+      //console.log(user);
+      user.save()
         .then(() =>
-          res.status(201).json({ message: "Utilisateur créé et sauvegardé" })
-        )
+          res.status(201).json({ message: "Utilisateur créé et sauvegardé" }))
         //.catch((error) => res.status(500).json({error}.send(console.log(error))))
-        .catch((error) => res.status(500).json({ error }).send(console.log(error)));
+        .catch((error) => res.status(400).json({ error }).send(console.log(error)));//ok?
     })
     .catch((error) => res.status(500).json({ error }));
 };
@@ -55,11 +53,11 @@ exports.signup = (req, res, next) => {
 //2.login : 
 exports.login = (req,res,next) =>{
 
-  console.log("!!!req.body!!!!");
+  /*console.log("!!!req.body!!!!");
   console.log(req.body.email);
-  console.log(req.body.password);
+  console.log(req.body.password);*/
 
-    //chiffrage email
+  //chiffrage email//
   //const emailCryptoJs = cryptojs.HmacSHA256(req.body.email, `${process.env.CRYPTOJS_EMAIL}`).toString();//si chiffrage mail!
   //console.log(emailCryptoJs);
   
@@ -81,15 +79,14 @@ exports.login = (req,res,next) =>{
       //si mdp valide
       //res.status(200).json({message : "Mot de passe correct"});
       //il faut renvoyer au front un userid+1token:
+      console.log("welcome back user "+userFound._id+" !");
       res.status(200).json({
         userId: userFound._id,
         token: jwt.sign ( {userId: userFound._id} , `${process.env.JWT_KEY_TOKEN}` , {expiresIn:"12h"} )
       });
     })
-    .catch(error => res.status(500).json({error:'error1'}));//error lors comparaison mdp
+    .catch(error => res.status(500).json({error}));//error lors comparaison mdp
   })
-  .catch(error => res.status(500).json({error:'error2'}));//error dans le reste du code
-
-
+  .catch(error => res.status(500).json({error}));//error dans le reste du code
 
 };

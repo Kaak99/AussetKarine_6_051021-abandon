@@ -1,13 +1,12 @@
+// tests (à retirer)
+console.log(` --------> user-route`);
+
 //-----imports-----//
 
 const express = require("express");
-//console.log(express);
-
-const userController = require('../controllers/user');
-//console.log(userController);
-
 const router = express.Router();
-//console.log(router);
+
+const userController = require('../controllers/user'); //attention userCtrl!
 
 
 //-----routes-----//
