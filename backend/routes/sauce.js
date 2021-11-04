@@ -1,35 +1,36 @@
+// tests (à retirer)
+console.log(` --------> sauce-route`);
+
 //-----imports-----//
 
 const express = require("express");
-//console.log(express);
+const router = express.Router();
+
+const auth = require('../middleware/auth');
+const multer = require('../middleware/multer-config');
 
 const sauceController = require('../controllers/sauce');
-
-const router = express.Router();
-//console.log(router);
 
 
 //-----routes-----//
 
-//route affichage de toutes les sauces//
-router.get('/', sauceController.getAllSauces);
+//route affichage de toutes les sauces (getall)//
+router.get('/', auth, sauceController.getAllSauces);
 
-//route affichage d'une sauce// 
-router.get('/:id', sauceController.getOneSauce);
+//route affichage d'une sauce (getOne)// 
+router.get('/:id', auth, sauceController.getOneSauce);
 
 //--route création d'une sauce--// 
-router.post('/', sauceController.createSauce);
+router.post('/', auth, multer, sauceController.createSauce);//multer ici
 
 //route suppression d'une sauce//
-//router.delete('/:id', sauceController.deleteSauce);
+router.delete('/:id', auth, sauceController.deleteSauce);
 
 //route modification d'une sauce// 
-//router.put('/:id', sauceController.modifySauce);
+router.put('/:id', auth, multer, sauceController.modifySauce);//multer ici
 
 //route like d'une sauce// 
 //route dislike d'une sauce//
-
-
 
 
 
