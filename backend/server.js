@@ -7,15 +7,14 @@ console.log("**********start**********");
 const http = require("http");
 const app = require("./app.js");
 
-const dotenv = require("dotenv");
+const dotenv = require("dotenv").config();
+//ou:
+//const dotenv = require("dotenv");
 //console.log(dotenv);
 //const result = dotenv.config();
-//ou : const dotenv = require("dotenv").config();
-
 
 const normalizePort = val => {
   const port = parseInt(val, 10);
-
   if (isNaN(port)) {
     return val;
   }
