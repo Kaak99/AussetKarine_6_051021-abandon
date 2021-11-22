@@ -24,7 +24,7 @@ sauceSchema.plugin(uniqueValidator);
 
 //-----exports-----//
 //attention erreur sans le S à module.exportS ! "TypeError: User is not a constructor")
-module.exports = mongoose.model("sauce", sauceSchema);
+module.exports = mongoose.model("sauce", sauceSchema);//Sauce plutot?
 
 
 /*

@@ -15,4 +15,4 @@ userSchema.plugin(uniqueValidator);
 
 //-----exports-----//
 //attention erreur sans le S à module.exportS ! "TypeError: User is not a constructor")
-module.exports = mongoose.model("user", userSchema);
+module.exports = mongoose.model("user", userSchema);//plutot User?
