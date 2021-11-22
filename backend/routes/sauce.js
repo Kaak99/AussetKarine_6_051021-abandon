@@ -30,7 +30,7 @@ router.delete('/:id', auth, sauceController.deleteSauce);
 router.put('/:id', auth, multer, sauceController.modifySauce);//multer ici
 
 //route like/dislike d'une sauce// 
-//router.post('/:id/like', auth, sauceController.likeDislikeSauce);
+router.post('/:id/like', auth, sauceController.likeDislikeSauce);
 
 
 
