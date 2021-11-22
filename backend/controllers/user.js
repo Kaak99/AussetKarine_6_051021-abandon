@@ -1,21 +1,15 @@
 // tests (à retirer)
 console.log(` --------> user-ctrl`);
 
+
 //-----imports-----//
 
-//import le modele//
-const User = require("../models/User");
 
-//- import CryptoJS/ bscript/ JWT -//
+const User = require("../models/User");//import le modele
 const cryptojs = require("crypto-js");//(chiffrage pour emails)
 const bcrypt = require("bcrypt");//(hash mdp)
 const jwt = require('jsonwebtoken');//token
-
-//import variables d'environnement //
-const dotenv = require("dotenv").config();
-/*const dotenv = require("dotenv");
-const result = dotenv.config();*/
-
+const dotenv = require("dotenv").config();//import variables d'environnement
 
 
 //-----exports-----//
